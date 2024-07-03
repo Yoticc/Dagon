@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dagon", "Dagon\Dagon.csproj", "{B7D0688E-6281-4E55-8C93-91966B9D93D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{F3613D92-9902-4A07-9AC8-E3655CA3212B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Debug|x64.Build.0 = Debug|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7D0688E-6281-4E55-8C93-91966B9D93D4}.Release|x64.Build.0 = Release|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Debug|x64.Build.0 = Debug|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Release|x64.ActiveCfg = Release|Any CPU
+		{CAB8E5CA-B028-4DD2-BE30-DEF510F4AFA6}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE5CC055-BD98-4E0C-930D-57EE5A93EE51}
+	EndGlobalSection
+EndGlobal

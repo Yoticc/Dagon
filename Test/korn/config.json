@@ -1,0 +1,29 @@
+{
+  "EntryPoint": {
+    "UseCustomEntryPoint": false,
+    "EntryPointPath": {
+      "Use": false,
+      "Path": "Program.Main",
+      "desc": "Instead of using the EntryPointAttribute. Here can be written path to EntryPoint method without the EntryPointAttrbute"
+    }
+  },
+  "CustomNativeOut": {
+    "Use": true,
+    "Path": "out\\TestApp.exe",
+    "ExportPdbFile": true,
+    "AutoRenamePdbFileToDllName": true,
+    "desc": "Copy output native file to the path. Base path is the project dir"
+  },
+  "AddictionalBuildArguments": {
+    "InvariantGlobalization": true,
+    "StackTraceSupport": true,
+    "UseSystemResourceKeys": true,
+    "GenerateLogFile": false,
+    "desc": "Adds an additional argument to the build command. Set null if you don't want to consider the argument",
+    "desc_": "For best file size use: [InvariantGlobalization = true, StackTraceSupport = false, UseSystemResourceKeys = true, GenerateLogFile = false]"
+  },
+  "BypassNonStaticNativeMethods": true,
+  "AutoCloseDotnetProcesses": true,
+  "LibrariesToIgnore": [],
+  "desc": "Optimizing compiler by adding some libraries to ignore, it's worth adding here libraries-mappings that have a lot of non-user code. Example of name: \"UnrealEngine.Mappings.dll\""
+}

@@ -1,11 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<OutputType>WinExe</OutputType>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="out\**" />
+    <EmbeddedResource Remove="out\**" />
+    <None Remove="out\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\cheats\Yotic.Linq\Yotic.Linq\Yotic.Linq.csproj" />
+    <ProjectReference Include="..\Dagon\Dagon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="korn\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Korn" Version="1.0.0" />

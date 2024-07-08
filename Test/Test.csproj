@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\cheats\Yotic.Linq\Yotic.Linq\Yotic.Linq.csproj" />
+    <ProjectReference Include="..\..\Yotic.Math\Yotic.Math\Yotic.Math.csproj" />
     <ProjectReference Include="..\Dagon\Dagon.csproj" />
   </ItemGroup>
 
@@ -25,6 +26,12 @@
 
   <ItemGroup>
     <PackageReference Include="Korn" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="korn">
+      <Static>True</Static>
+    </Using>
   </ItemGroup>
 
 </Project>

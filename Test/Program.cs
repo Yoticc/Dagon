@@ -1,13 +1,24 @@
 ﻿using Dagon.WinAPI;
+using Dagon.Windows;
 
 unsafe class Program
 {
     static void Main()
     {
-        var hInstance = kernel32.GetModuleHandle((char*)0);
+        var window = NativeWindow.Create();
+        window.Title = "Some Title";
+        msg(window.Title);
 
-        var window = User32.CreateWindow(0, 32770, "TestApp window", WindowStyles.VISIBLE, 0, 0, 400, 400, 0, 0, hInstance, 0);
-
-        user32.MessageBox(0, $"hInstance: {hInstance}, window: {window}, error: {kernel32.GetLastError()}", "", 0); // You need to stay in the thread
+        msg($"hInstance: window: {window.Handle}, error: {kernel32.GetLastError()}"); // It need to stay in the thread       
     }
+
+    [NativeFunc]
+    public static long WndProc(nint hWnd, WindowMessage msg, long wParam, nint lParam)
+    {
+        Console.WriteLine($"{hWnd}, {msg}, {wParam}, {lParam}");
+
+        return user32.DefWindowProc(hWnd, (uint)msg, (ulong)wParam, lParam);
+    }
+
+    public static void msg(object text) => user32.MessageBox(0, text.ToString()??"", "", 0);
 }

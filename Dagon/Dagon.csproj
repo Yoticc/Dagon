@@ -24,6 +24,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\cheats\Yotic.Linq\Yotic.Linq\Yotic.Linq.csproj" />
+    <ProjectReference Include="..\..\Yotic.Math\Yotic.Math\Yotic.Math.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="korn">
+      <Static>True</Static>
+    </Using>
+    <Using Include="System.Runtime.InteropServices" />
   </ItemGroup>
 
 </Project>

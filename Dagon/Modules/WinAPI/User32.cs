@@ -1,8 +1,21 @@
 ﻿namespace Dagon.WinAPI;
-public unsafe class User32
+public unsafe static class User32
 {
+    // Private
+    #region Get/Set WindowLong
+    static int GetWindowLong(nint handle, WindowLongField field) => user32.GetWindowLong(handle, (int)field);
+    static void SetWindowLong(nint handle, WindowLongField field, int value) => user32.SetWindowLong(handle, (int)field, value);
+    #endregion
+
+    #region Get/Set WindowLongPtr
+    static pointer GetWindowLongPtr(nint handle, WindowLongField field) => (nint)user32.GetWindowLongPtr(handle, (int)field);
+    static pointer SetWindowLongPtr(nint handle, WindowLongField field, pointer value) => user32.SetWindowLongPtr(handle, (int)field, value);
+    #endregion
+
+    // Public
+    #region CreateWindow
     public static pointer CreateWindow(
-        WindowStylesEx styleEx,
+        WindowExStyles styleEx,
         string className,
         string windowName,
         WindowStyles style,
@@ -17,7 +30,7 @@ public unsafe class User32
         => user32.CreateWindowEx((int)styleEx, className, windowName, (int)style, x, y, width, height, hWndParent, menu, hInstance, lpParam);
 
     public static pointer CreateWindow(
-        WindowStylesEx styleEx,
+        WindowExStyles styleEx,
         ushort className,
         string windowName,
         WindowStyles style,
@@ -30,7 +43,9 @@ public unsafe class User32
         pointer hInstance,
         pointer lpParam)
         => user32.CreateWindowEx((int)styleEx, (char*)className, windowName, (int)style, x, y, width, height, hWndParent, menu, hInstance, lpParam);
+    #endregion
 
+    #region Get/Set WindowTitle
     public static string GetWindowTitle(nint handle)
     {
         const int MAX_LENGTH = 256;
@@ -41,11 +56,36 @@ public unsafe class User32
     }
 
     public static void SetWindowTitle(nint handle, string text) => user32.SetWindowText(handle, text);
+    #endregion
 
+    #region Get/Set WindowRectangle
     public static Vec4i GetWindowRectangle(nint handle)
     {
-        Vec4i rect;
-        user32.GetWindowRect(handle, &rect);
-        return rect;
+        Vec4i rectangle;
+        user32.GetWindowRect(handle, &rectangle);
+        return rectangle;
     }
+
+    public static void SetWindowRectangle(nint handle, Vec4i rectangle) => user32.SetWindowPos(handle, handle, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, 0);
+    #endregion
+
+    #region Get/Set WindowStyle
+    public static WindowStyles GetWindowStyle(nint handle) => (WindowStyles)GetWindowLong(handle, WindowLongField.Style);
+
+    public static void SetWindowStyle(nint handle, WindowStyles style) => SetWindowLong(handle, WindowLongField.Style, (int)style);
+    #endregion
+
+    #region Get/Set WindowStyle
+    public static WindowExStyles GetWindowExStyle(nint handle) => (WindowExStyles)GetWindowLong(handle, WindowLongField.ExStyle);
+
+    public static void SetWindowExStyle(nint handle, WindowExStyles style) => SetWindowLong(handle, WindowLongField.ExStyle, (int)style);
+    #endregion
+
+    #region Set Window WndProc Function
+    public static pointer SetWindowWndProcFunction(nint handle, pointer pointer) => SetWindowLongPtr(handle, WindowLongField.WndProc, pointer);
+    #endregion
+
+    #region Call Window WndProc Function
+    public static long CallWindowProccess(nint handle, pointer function, WindowMessage message, long wParam, nint lParam) => user32.CallWindowProc(function, handle, (uint)message, (ulong)wParam, lParam);
+    #endregion
 }

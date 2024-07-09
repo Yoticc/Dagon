@@ -24,14 +24,23 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\cheats\Yotic.Linq\Yotic.Linq\Yotic.Linq.csproj" />
+    <ProjectReference Include="..\..\DotnetNative.Events\DotnetNative.Events\DotnetNative.Events.csproj" />
     <ProjectReference Include="..\..\Yotic.Math\Yotic.Math\Yotic.Math.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="Dagon" />
+    <Using Include="Dagon.WinAPI" />
+    <Using Include="DotnetNative.Events" />
     <Using Include="korn">
       <Static>True</Static>
     </Using>
     <Using Include="System.Runtime.InteropServices" />
+    <Using Include="Yotic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\WinAPI\Structs\" />
   </ItemGroup>
 
 </Project>

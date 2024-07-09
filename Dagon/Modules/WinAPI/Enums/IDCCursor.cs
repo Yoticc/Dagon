@@ -1,20 +1,20 @@
 ﻿namespace Dagon.WinAPI;
 public enum IDCCursor
 {
-    ARROW = 32512,
-    IBEAM = 32513,
-    WAIT = 32514,
-    CROSS = 32515,
-    UPARROW = 32516,
-    SIZE = 32640,
-    ICON = 32641,
-    SIZENWSE = 32642,
-    SIZENESW = 32643,
-    SIZEWE = 32644,
-    SIZENS = 32645,
-    SIZEALL = 32646,
-    NO = 32648,
-    HAND = 32649,
-    APPSTARTING = 32650,
-    HELP = 32651
+    Arrow = 32512,
+    IBeam = 32513,
+    Wait = 32514,
+    Cross = 32515,
+    UpArrow = 32516,
+    Size = 32640,
+    Icon = 32641,
+    SizeNWSE = 32642,
+    SsizeNESW = 32643,
+    SsizeWE = 32644,
+    SsizeNS = 32645,
+    SsizeAll = 32646,
+    No = 32648,
+    Hand = 32649,
+    AppStarting = 32650,
+    Help = 32651
 }

@@ -4,7 +4,7 @@
 /// <summary>
 /// Look at <href="https://learn.microsoft.com/ru-ru/windows/win32/winmsg/window-styles"/>
 /// </summary>
-public enum WindowStylesEx : uint
+public enum WindowExStyles : uint
 {
     /// <summary>  
     /// Specifies that a window created with this style accepts drag-drop files.  

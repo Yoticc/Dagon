@@ -1,4 +1,7 @@
-﻿namespace Dagon.WinAPI;
+﻿using System.Drawing;
+using System.Reflection.Metadata;
+
+namespace Dagon.WinAPI;
 public unsafe static class User32
 {
     // Private
@@ -58,6 +61,17 @@ public unsafe static class User32
     public static void SetWindowTitle(nint handle, string text) => user32.SetWindowText(handle, text);
     #endregion
 
+    #region Set WidnowPos
+    public static void SetWindowPos(nint handle, SetOrderFlags zOrder, int x, int y, int width, int height, SetWindowPosFlags flags)
+        => user32.SetWindowPos(handle, (long)zOrder, x, y, width, height, (uint)flags);
+
+    public static void SetWindowPos(nint handle, int x, int y, int width, int height, SetWindowPosFlags flags)
+        => user32.SetWindowPos(handle, handle, x, y, width, height, (uint)flags);
+
+    public static void SetWindowPos(nint handle, int x, int y, int width, int height)
+        => SetWindowPos(handle, x, y, width, height, SetWindowPosFlags.NoZOrder);
+    #endregion
+
     #region Get/Set WindowRectangle
     public static Vec4i GetWindowRectangle(nint handle)
     {
@@ -65,20 +79,26 @@ public unsafe static class User32
         user32.GetWindowRect(handle, &rectangle);
         return rectangle;
     }
-
-    public static void SetWindowRectangle(nint handle, Vec4i rectangle) => user32.SetWindowPos(handle, handle, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, 0);
+    public static void SetWindowRectangle(nint handle, Vec4i rectangle) => SetWindowPos(handle, rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height);
     #endregion
 
     #region Get/Set WindowStyle
     public static WindowStyles GetWindowStyle(nint handle) => (WindowStyles)GetWindowLong(handle, WindowLongField.Style);
-
-    public static void SetWindowStyle(nint handle, WindowStyles style) => SetWindowLong(handle, WindowLongField.Style, (int)style);
+    public static void SetWindowStyle(nint handle, WindowStyles style)
+    {
+        SetWindowLong(handle, WindowLongField.Style, (int)style);
+        UpdateWindowStyle(handle);
+    }
     #endregion
 
     #region Get/Set WindowStyle
     public static WindowExStyles GetWindowExStyle(nint handle) => (WindowExStyles)GetWindowLong(handle, WindowLongField.ExStyle);
 
-    public static void SetWindowExStyle(nint handle, WindowExStyles style) => SetWindowLong(handle, WindowLongField.ExStyle, (int)style);
+    public static void SetWindowExStyle(nint handle, WindowExStyles style)
+    {
+        SetWindowLong(handle, WindowLongField.ExStyle, (int)style);
+        UpdateWindowStyle(handle);
+    }
     #endregion
 
     #region Set Window WndProc Function
@@ -86,6 +106,12 @@ public unsafe static class User32
     #endregion
 
     #region Call Window WndProc Function
-    public static long CallWindowProccess(nint handle, pointer function, WindowMessage message, long wParam, nint lParam) => user32.CallWindowProc(function, handle, (uint)message, (ulong)wParam, lParam);
+    public static long CallWindowProccess(nint handle, pointer function, WindowMessage message, long wParam, nint lParam) 
+        => user32.CallWindowProc(function, handle, (uint)message, (ulong)wParam, lParam);
+    #endregion
+
+    #region Update Style
+    public static void UpdateWindowStyle(nint handle) 
+        => SetWindowPos(handle, 0, 0, 0, 0, SetWindowPosFlags.NoSize | SetWindowPosFlags.NoMove | SetWindowPosFlags.NoZOrder | SetWindowPosFlags.FrameChanged);
     #endregion
 }

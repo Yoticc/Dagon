@@ -48,6 +48,11 @@ public unsafe class NativeWindow : IDisposable
             window.Title = title;
         #endregion
 
+        #region Style and ExStyle
+        window.Style = style ?? default;
+        window.ExStyle = exStyles ?? default;
+        #endregion
+
         #region Location and Size
         if (location is not null || size is not null)
         {
@@ -79,11 +84,6 @@ public unsafe class NativeWindow : IDisposable
 
             window.Rectangle = rect;
         }
-        #endregion
-
-        #region Style and ExStyle
-        window.Style = style??default;
-        window.ExStyle = exStyles??default;
         #endregion
 
         return window;

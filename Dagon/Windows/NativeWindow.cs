@@ -1,14 +1,19 @@
-﻿namespace Dagon;
+﻿using Dagon.OpenGL;
+using OpenGL;
+
+namespace Dagon;
 public unsafe class NativeWindow : IDisposable
 {
     NativeWindow(nint handle, WindowDispatcher dispatcher)
     {
         Handle = handle;
+        HDC = user32.GetDC(handle);
         Dispatcher = dispatcher;
         OnWindowMessage = Dispatcher.OnWindowMessage;
     }
 
     public readonly nint Handle;
+    public readonly nint HDC;
     public readonly WindowDispatcher Dispatcher;
     public readonly EventBus<WindowDispatcher.WndProcEvent> OnWindowMessage;
 
@@ -21,7 +26,7 @@ public unsafe class NativeWindow : IDisposable
     public WindowStyles Style { get => User32.GetWindowStyle(Handle); set => User32.SetWindowStyle(Handle, value); }
     public WindowExStyles ExStyle { get => User32.GetWindowExStyle(Handle); set => User32.SetWindowExStyle(Handle, value); }
 
-    public void StartMessageLoop()
+    public void StartMessageLoop(WindowWorkspace workspace)
     {
         nint message;
         while (user32.GetMessage(&message, Handle, 0, 0))
@@ -34,6 +39,7 @@ public unsafe class NativeWindow : IDisposable
     public void Dispose()
     {
         Dispatcher.Dispose();
+        user32.ReleaseDC(Handle, HDC);
         user32.DestroyWindow(Handle);
     }
     ~NativeWindow() => Dispose();
